@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Career">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="Int32" Nullable="false" />
+    <Property Name="job_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="job_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="experience" Type="Int32" Nullable="false" />
+    <Property Name="minimum_qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="job_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="total_vacancies" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="job_applications" Relationship="Self.FK__job_appli__job_i__2C3393D0" FromRole="Careers" ToRole="job_applications" />
+  </EntityType>
+  <EntityType Name="Employee_Data">
+    <Key>
+      <PropertyRef Name="Emp_ID" />
+    </Key>
+    <Property Name="Emp_ID" Type="Int32" Nullable="false" />
+    <Property Name="Emp_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile_No" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Email_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Marital_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Job_Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee_Events_Registration" Relationship="Self.fk3_const" FromRole="Employee_Data" ToRole="Employee_Events_Registration" />
+  </EntityType>
+  <EntityType Name="Employee_Events_Registration">
+    <Key>
+      <PropertyRef Name="Registration_ID" />
+    </Key>
+    <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Event_ID" Type="Int32" />
+    <Property Name="Emp_ID" Type="Int32" />
+    <Property Name="Mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee_Data" Relationship="Self.fk3_const" FromRole="Employee_Events_Registration" ToRole="Employee_Data" />
+    <NavigationProperty Name="Events_General_Online" Relationship="Self.fk2_const" FromRole="Employee_Events_Registration" ToRole="Events_General_Online" />
+  </EntityType>
+  <EntityType Name="Events_General_Online">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EventDate" Type="DateTime" Precision="0" />
+    <Property Name="EventTiming" Type="Time" Precision="7" />
+    <Property Name="EventCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Venue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee_Events_Registration" Relationship="Self.fk2_const" FromRole="Events_General_Online" ToRole="Employee_Events_Registration" />
+    <NavigationProperty Name="Events_Reg_General_Online" Relationship="Self.fk_EventId" FromRole="Events_General_Online" ToRole="Events_Reg_General_Online" />
+  </EntityType>
+  <EntityType Name="Events_Reg_General_Online">
+    <Key>
+      <PropertyRef Name="RegistrationId" />
+    </Key>
+    <Property Name="RegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Events_General_Online" Relationship="Self.fk_EventId" FromRole="Events_Reg_General_Online" ToRole="Events_General_Online" />
+  </EntityType>
+  <EntityType Name="job_applications">
+    <Key>
+      <PropertyRef Name="application_id" />
+    </Key>
+    <Property Name="application_id" Type="Int32" Nullable="false" />
+    <Property Name="job_id" Type="Int32" />
+    <Property Name="your_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preferred_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Career" Relationship="Self.FK__job_appli__job_i__2C3393D0" FromRole="job_applications" ToRole="Careers" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__job_appli__job_i__2C3393D0">
+    <End Role="Careers" Type="Self.Career" Multiplicity="0..1" />
+    <End Role="job_applications" Type="Self.job_applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Careers">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="job_applications">
+        <PropertyRef Name="job_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3_const">
+    <End Role="Employee_Data" Type="Self.Employee_Data" Multiplicity="0..1" />
+    <End Role="Employee_Events_Registration" Type="Self.Employee_Events_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Data">
+        <PropertyRef Name="Emp_ID" />
+      </Principal>
+      <Dependent Role="Employee_Events_Registration">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2_const">
+    <End Role="Events_General_Online" Type="Self.Events_General_Online" Multiplicity="0..1" />
+    <End Role="Employee_Events_Registration" Type="Self.Employee_Events_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events_General_Online">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Employee_Events_Registration">
+        <PropertyRef Name="Event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventId">
+    <End Role="Events_General_Online" Type="Self.Events_General_Online" Multiplicity="0..1" />
+    <End Role="Events_Reg_General_Online" Type="Self.Events_Reg_General_Online" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events_General_Online">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Events_Reg_General_Online">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ITCompanyEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Careers" EntityType="Self.Career" />
+    <EntitySet Name="Employee_Data" EntityType="Self.Employee_Data" />
+    <EntitySet Name="Employee_Events_Registration" EntityType="Self.Employee_Events_Registration" />
+    <EntitySet Name="Events_General_Online" EntityType="Self.Events_General_Online" />
+    <EntitySet Name="Events_Reg_General_Online" EntityType="Self.Events_Reg_General_Online" />
+    <EntitySet Name="job_applications" EntityType="Self.job_applications" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__job_appli__job_i__2C3393D0" Association="Self.FK__job_appli__job_i__2C3393D0">
+      <End Role="Careers" EntitySet="Careers" />
+      <End Role="job_applications" EntitySet="job_applications" />
+    </AssociationSet>
+    <AssociationSet Name="fk3_const" Association="Self.fk3_const">
+      <End Role="Employee_Data" EntitySet="Employee_Data" />
+      <End Role="Employee_Events_Registration" EntitySet="Employee_Events_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="fk2_const" Association="Self.fk2_const">
+      <End Role="Events_General_Online" EntitySet="Events_General_Online" />
+      <End Role="Employee_Events_Registration" EntitySet="Employee_Events_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventId" Association="Self.fk_EventId">
+      <End Role="Events_General_Online" EntitySet="Events_General_Online" />
+      <End Role="Events_Reg_General_Online" EntitySet="Events_Reg_General_Online" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

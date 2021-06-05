@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ITCompanyModelStoreContainer" CdmEntityContainer="ITCompanyEntities4">
+    <EntitySetMapping Name="Careers">
+      <EntityTypeMapping TypeName="ITCompanyModel.Career">
+        <MappingFragment StoreEntitySet="Careers">
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="job_title" ColumnName="job_title" />
+          <ScalarProperty Name="job_location" ColumnName="job_location" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="minimum_qualification" ColumnName="minimum_qualification" />
+          <ScalarProperty Name="job_category" ColumnName="job_category" />
+          <ScalarProperty Name="total_vacancies" ColumnName="total_vacancies" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Data">
+      <EntityTypeMapping TypeName="ITCompanyModel.Employee_Data">
+        <MappingFragment StoreEntitySet="Employee_Data">
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+          <ScalarProperty Name="Emp_Name" ColumnName="Emp_Name" />
+          <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Marital_Status" ColumnName="Marital_Status" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Job_Location" ColumnName="Job_Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Events_Registration">
+      <EntityTypeMapping TypeName="ITCompanyModel.Employee_Events_Registration">
+        <MappingFragment StoreEntitySet="Employee_Events_Registration">
+          <ScalarProperty Name="Registration_ID" ColumnName="Registration_ID" />
+          <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+          <ScalarProperty Name="Mobile_no" ColumnName="Mobile_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events_General_Online">
+      <EntityTypeMapping TypeName="ITCompanyModel.Events_General_Online">
+        <MappingFragment StoreEntitySet="Events_General_Online">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventTiming" ColumnName="EventTiming" />
+          <ScalarProperty Name="EventCategory" ColumnName="EventCategory" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events_Reg_General_Online">
+      <EntityTypeMapping TypeName="ITCompanyModel.Events_Reg_General_Online">
+        <MappingFragment StoreEntitySet="Events_Reg_General_Online">
+          <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="job_applications">
+      <EntityTypeMapping TypeName="ITCompanyModel.job_applications">
+        <MappingFragment StoreEntitySet="job_applications">
+          <ScalarProperty Name="application_id" ColumnName="application_id" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="your_name" ColumnName="your_name" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="preferred_location" ColumnName="preferred_location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ITCompanyModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

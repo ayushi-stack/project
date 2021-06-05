@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITCompanyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Careers">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="int" Nullable="false" />
+    <Property Name="job_title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="job_location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="experience" Type="int" Nullable="false" />
+    <Property Name="minimum_qualification" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="job_category" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="total_vacancies" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee_Data">
+    <Key>
+      <PropertyRef Name="Emp_ID" />
+    </Key>
+    <Property Name="Emp_ID" Type="int" Nullable="false" />
+    <Property Name="Emp_Name" Type="varchar" MaxLength="30" />
+    <Property Name="Mobile_No" Type="varchar" MaxLength="10" />
+    <Property Name="Email_ID" Type="varchar" MaxLength="30" />
+    <Property Name="GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="Department" Type="varchar" MaxLength="30" />
+    <Property Name="Designation" Type="varchar" MaxLength="30" />
+    <Property Name="Marital_Status" Type="varchar" MaxLength="10" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Job_Location" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Employee_Events_Registration">
+    <Key>
+      <PropertyRef Name="Registration_ID" />
+    </Key>
+    <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_ID" Type="int" />
+    <Property Name="Emp_ID" Type="int" />
+    <Property Name="Mobile_no" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Events_General_Online">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" Nullable="false" />
+    <Property Name="EventName" Type="varchar" MaxLength="100" />
+    <Property Name="EventDate" Type="date" />
+    <Property Name="EventTiming" Type="time" Precision="7" />
+    <Property Name="EventCategory" Type="varchar" MaxLength="50" />
+    <Property Name="Venue" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Events_Reg_General_Online">
+    <Key>
+      <PropertyRef Name="RegistrationId" />
+    </Key>
+    <Property Name="RegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="job_applications">
+    <Key>
+      <PropertyRef Name="application_id" />
+    </Key>
+    <Property Name="application_id" Type="int" Nullable="false" />
+    <Property Name="job_id" Type="int" />
+    <Property Name="your_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mobile_no" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="preferred_location" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__job_appli__job_i__2C3393D0">
+    <End Role="Careers" Type="Self.Careers" Multiplicity="0..1" />
+    <End Role="job_applications" Type="Self.job_applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Careers">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="job_applications">
+        <PropertyRef Name="job_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventId">
+    <End Role="Events_General_Online" Type="Self.Events_General_Online" Multiplicity="0..1" />
+    <End Role="Events_Reg_General_Online" Type="Self.Events_Reg_General_Online" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events_General_Online">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Events_Reg_General_Online">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2_const">
+    <End Role="Events_General_Online" Type="Self.Events_General_Online" Multiplicity="0..1" />
+    <End Role="Employee_Events_Registration" Type="Self.Employee_Events_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events_General_Online">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Employee_Events_Registration">
+        <PropertyRef Name="Event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk3_const">
+    <End Role="Employee_Data" Type="Self.Employee_Data" Multiplicity="0..1" />
+    <End Role="Employee_Events_Registration" Type="Self.Employee_Events_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Data">
+        <PropertyRef Name="Emp_ID" />
+      </Principal>
+      <Dependent Role="Employee_Events_Registration">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ITCompanyModelStoreContainer">
+    <EntitySet Name="Careers" EntityType="Self.Careers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Data" EntityType="Self.Employee_Data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Events_Registration" EntityType="Self.Employee_Events_Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events_General_Online" EntityType="Self.Events_General_Online" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events_Reg_General_Online" EntityType="Self.Events_Reg_General_Online" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job_applications" EntityType="Self.job_applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__job_appli__job_i__2C3393D0" Association="Self.FK__job_appli__job_i__2C3393D0">
+      <End Role="Careers" EntitySet="Careers" />
+      <End Role="job_applications" EntitySet="job_applications" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventId" Association="Self.fk_EventId">
+      <End Role="Events_General_Online" EntitySet="Events_General_Online" />
+      <End Role="Events_Reg_General_Online" EntitySet="Events_Reg_General_Online" />
+    </AssociationSet>
+    <AssociationSet Name="fk2_const" Association="Self.fk2_const">
+      <End Role="Events_General_Online" EntitySet="Events_General_Online" />
+      <End Role="Employee_Events_Registration" EntitySet="Employee_Events_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="fk3_const" Association="Self.fk3_const">
+      <End Role="Employee_Data" EntitySet="Employee_Data" />
+      <End Role="Employee_Events_Registration" EntitySet="Employee_Events_Registration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
