@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ITcompany.Controllers.Events_General_Online>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoutheadfoot.cshtml";
+}
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+
+        <h1>Online Events</h1>
+
+        <div class="row" style="display:flex;">
+          
+                @foreach (var data in Model)
+                {
+
+                   
+            <div class="col-6" style="margin:30px;width:40%;height:40%; display:inline; border:solid; text-align:center">
+                
+                <p>@Html.DisplayFor(modelItem => data.EventName)</p>
+
+
+                <p>@Html.DisplayFor(modelItem => data.EventDate)</p>
+                <p>@Html.DisplayFor(modelItem => data.EventTiming)</p>
+                <p>@Html.DisplayFor(modelItem => data.Venue)</p>
+                <hr>
+                @Html.ActionLink("REGISTER", "register", "Home" , new { EventID = data.EventID, @style = "text-transform:capitalize; color:purple" },null);
+
+            </div>
+                }
+            </div>
+        </div>
+ 
+    </section>
+
+
+
